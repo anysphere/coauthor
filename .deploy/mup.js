@@ -2,11 +2,11 @@ module.exports = {
   servers: {
     one: {
       // Server host name / IP address
-      host: 'coauthor.csail.mit.edu',
+      host: 'coauthor.anysphere.co',
       // Root-level username on server
       username: 'ubuntu',
       // Local SSH key to use to authenticate to server
-      pem: "/afs/csail/u/e/edemaine/.ssh/private/id_rsa"
+      pem: "/Users/sualeh/sualeh-asphr.pem"
     }
   },
 
@@ -14,7 +14,7 @@ module.exports = {
   meteor: {
     name: 'coauthor',
     // Location of the Coauthor source code (parent directory of this file)
-    path: '/afs/csail/u/e/edemaine/Projects/coauthor',
+    path: '/coauthor',
     servers: {
       one: {}
     },
@@ -32,10 +32,10 @@ module.exports = {
       // deployCheckWaitTime below.
       COAUTHOR_SKIP_UPGRADE_DB: '1',
       // Set to your public-facing URL
-      ROOT_URL: 'https://coauthor.csail.mit.edu',
+      ROOT_URL: 'https://coauthor.anysphere.co',
       // Set to your SMTP server, to enable Coauthor email notifications.
       // Comment out this line to turn off email notifications.
-      MAIL_URL: 'smtp://coauthor.csail.mit.edu:25?ignoreTLS=true',
+      // MAIL_URL: 'smtp://coauthor.csail.mit.edu:25?ignoreTLS=true',
       // Default From address for mail notifications is
       // coauthor@deployed-host-name; set this to override:
       //MAIL_FROM: 'coauthor@coauthor.csail.mit.edu',
@@ -47,8 +47,8 @@ module.exports = {
       NODE_OPTIONS: '--trace-warnings --max-old-space-size=8192'
     },
     // If you're upgrading the database, you probably need to increase this:
-    deployCheckWaitTime: 200,
-    //deployCheckWaitTime: 2000,
+    // deployCheckWaitTime: 200,
+    deployCheckWaitTime: 2000,
   },
 
   // Mongo server
@@ -66,7 +66,7 @@ module.exports = {
 
   // Reverse proxy for SSL
   proxy: {
-    domains: 'coauthor.csail.mit.edu',
+    domains: 'coauthor.anysphere.co',
     ssl: {
       // The simple way to enable SSL on your server is Let's Encrypt.
       // Just specify your email address as follows:
