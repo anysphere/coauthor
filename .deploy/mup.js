@@ -14,7 +14,7 @@ module.exports = {
   meteor: {
     name: "coauthor",
     // Location of the Coauthor source code (parent directory of this file)
-    path: "/Users/sualeh/code/coauthor",
+    path: "~/coauthor",
     servers: {
       one: {},
     },
@@ -24,7 +24,6 @@ module.exports = {
     },
     buildOptions: {
       serverOnly: true,
-      buildLocation: "/scratch/coauthor-build",
     },
     env: {
       // Comment this out to upgrade the database (for Coauthor upgrades).
