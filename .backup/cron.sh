@@ -27,4 +27,5 @@ CLOUD_DIR="coauthor-backup$datedir"
 mongodump --db "$MONGO_COLLECTION"
 aws s3 cp "dump/$MONGO_COLLECTION/" "s3://coauthor-backup-bucket-s3/$CLOUD_DIR/" --recursive
 EOF
+chmod +x $HOME/backup.sh
 (crontab -l 2>/dev/null; echo "30 * * * * $HOME/backup.sh") | crontab -
