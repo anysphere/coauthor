@@ -13,7 +13,7 @@ MONGO_COLLECTION=coauthor
 DATE_IN_DIR=1
 if [ "$DATE_IN_DIR" -eq 1 ]
 then
-  datedir=/`date +%Y-%m-%d`
+  datedir=-`date +%Y-%m-%d`
 else
   datedir=
 fi
