@@ -1,6 +1,7 @@
 #!/bin/sh
 
-echo <<EOF
+cat << EOF > "$HOME/backup.sh"
+#!/bin/sh
 #!/bin/sh
 ## Trigger mongodump on the server (given by $REMOTE) and copy dump here
 ## and optionally to the cloud.
@@ -26,5 +27,5 @@ CLOUD_DIR="coauthor-backup$datedir"
 
 mongodump --db "$MONGO_COLLECTION"
 aws s3 cp "dump/$MONGO_COLLECTION/" "s3://coauthor-backup-bucket-s3/$CLOUD_DIR/" --recursive
-EOF > "$HOME/backup.sh"
+EOF
 (crontab -l 2>/dev/null; echo "30 * * * * $HOME/backup.sh") | crontab -
