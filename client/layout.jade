@@ -20,15 +20,15 @@ template(name="layout")
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand(href="{{pathFor 'frontpage'}}") Coauthor
+      a.navbar-brand(href="{{pathFor 'frontpage'}}") Asphr Coauthor
       //- Old Coauthor link was to current group, if any:
         if routeGroup
           if wildGroup
-            a.navbar-brand(href="{{pathFor 'frontpage'}}") Coauthor
+            a.navbar-brand(href="{{pathFor 'frontpage'}}") Asphr Coauthor
           else
-            a.navbar-brand(href="{{pathFor 'group' group=routeGroup}}") Coauthor
+            a.navbar-brand(href="{{pathFor 'group' group=routeGroup}}") Asphr Coauthor
         else
-          a.navbar-brand(href="{{pathFor 'frontpage'}}") Coauthor
+          a.navbar-brand(href="{{pathFor 'frontpage'}}") Asphr Coauthor
       ul.nav.navbar-nav
         li.dropdown.halflink
           //- Repetition is necessary to avoid space between links
@@ -97,10 +97,10 @@ template(name="credits")
     span.btn-group.btn-group-sm.pull-right
       //-
         a.btn.btn-default(href="mailto:edemaine@mit.edu") Contact Erik
-      a.btn.btn-default(href="https://github.com/edemaine/coauthor/#coauthor") Documentation
+      a.btn.btn-default(href="https://github.com/anysphere/coauthor/#coauthor") Documentation
       a.btn.btn-default(href="https://github.com/edemaine/coauthor/blob/main/CHANGELOG.md") Recent Changes
       a.btn.btn-default(href="https://github.com/edemaine/coauthor/issues/") Suggestions/Issues
-      a.btn.btn-default(href="https://github.com/edemaine/coauthor/") Source Code
+      a.btn.btn-default(href="https://github.com/anysphere/coauthor/") Source Code
 
 template(name="footer")
   if showFooter
