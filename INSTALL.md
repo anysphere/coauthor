@@ -37,8 +37,8 @@ machine via [meteor-up](https://github.com/kadirahq/meteor-up).
 Installation instructions:
 
 1. Install Meteor and download Coauthor as above.
-2. Install `mup` via `npm install -g mup`
-   (after installing [Node](https://nodejs.org/en/) and thus NPM).
+2. Install `mup` via `sudo npm install -g mup --unsafe-perm`.
+   (after installing [Node](https://nodejs.org/en/) and thus NPM via nvm).
 3. Edit `.deploy/mup.js` to match your configuration:
    * `servers.one` holds the information for accessing the server:
      * `host` is the hostname or IP address of the server.
@@ -70,10 +70,11 @@ Installation instructions:
    [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
    (used as the default email notification timezone for all users).
 5. `cd .deploy`
-6. `mup setup` to install all necessary software on the server
-7. `mup deploy` each time you want to deploy code to server
+6. `mup setup` to install all necessary software on the server. Use nvm to setup the node version to 16: `nvm use 16` every time we start that aws machine.
+7. Restore your backups via `mongorestore` on the deploy server. The dumps folder should be setup correctly.
+8. `mup deploy` each time you want to deploy code to server
    (initially and after each `git pull`)
-8. If you proxy the resulting server from another web server,
+9. If you proxy the resulting server from another web server,
    you'll probably want to `meteor remove force-ssl` to remove the automatic
    redirection from `http` to `https`.
 
