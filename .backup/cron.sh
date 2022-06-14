@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cat << EOF > "$HOME/backup.sh"
+cat << 'EOF' > "$HOME/backup.sh"
 #!/bin/sh
 ## Trigger mongodump on the server (given by $REMOTE) and copy dump here
 ## and optionally to the cloud.
