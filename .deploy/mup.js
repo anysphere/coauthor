@@ -2,37 +2,37 @@ module.exports = {
   servers: {
     one: {
       // Server host name / IP address
-      host: 'coauthor.anysphere.co',
+      host: "coauthor.anysphere.co",
       // Root-level username on server
-      username: 'ubuntu',
+      username: "ubuntu",
       // Local SSH key to use to authenticate to server
-      pem: "/Users/sualeh/sualeh-asphr.pem"
-    }
+      pem: "~/asphr-coauthor.pem",
+    },
   },
 
   // Meteor server
   meteor: {
-    name: 'coauthor',
+    name: "coauthor",
     // Location of the Coauthor source code (parent directory of this file)
-    path: '/coauthor',
+    path: "/Users/sualeh/code/coauthor",
     servers: {
-      one: {}
+      one: {},
     },
     docker: {
-      image: 'zodern/meteor:latest',
-      stopAppDuringPrepareBundle: false
+      image: "zodern/meteor:latest",
+      stopAppDuringPrepareBundle: false,
     },
     buildOptions: {
       serverOnly: true,
-      buildLocation: '/scratch/coauthor-build'
+      buildLocation: "/scratch/coauthor-build",
     },
     env: {
       // Comment this out to upgrade the database (for Coauthor upgrades).
       // This can take a while on startup, so be sure to also increase
       // deployCheckWaitTime below.
-      COAUTHOR_SKIP_UPGRADE_DB: '1',
+      COAUTHOR_SKIP_UPGRADE_DB: "1",
       // Set to your public-facing URL
-      ROOT_URL: 'https://coauthor.anysphere.co',
+      ROOT_URL: "https://coauthor.anysphere.co",
       // Set to your SMTP server, to enable Coauthor email notifications.
       // Comment out this line to turn off email notifications.
       // MAIL_URL: 'smtp://coauthor.csail.mit.edu:25?ignoreTLS=true',
@@ -40,15 +40,15 @@ module.exports = {
       // coauthor@deployed-host-name; set this to override:
       //MAIL_FROM: 'coauthor@coauthor.csail.mit.edu',
       // If you don't use MUP's MongoDB server, set this to your server:
-      MONGO_URL: 'mongodb://mongodb/meteor',
+      MONGO_URL: "mongodb://mongodb/meteor",
       // You shouldn't need to change this:
-      MONGO_OPLOG_URL: 'mongodb://mongodb/local',
+      MONGO_OPLOG_URL: "mongodb://mongodb/local",
       // Set to fill available RAM:
-      NODE_OPTIONS: '--trace-warnings --max-old-space-size=8192'
+      NODE_OPTIONS: "--trace-warnings --max-old-space-size=8192",
     },
     // If you're upgrading the database, you probably need to increase this:
-    // deployCheckWaitTime: 200,
-    deployCheckWaitTime: 2000,
+    deployCheckWaitTime: 200,
+    // deployCheckWaitTime: 2000,
   },
 
   // Mongo server
@@ -56,7 +56,7 @@ module.exports = {
     // Mongo 4 has the advantage of free cloud monitoring
     // [https://docs.mongodb.com/manual/administration/monitoring/].
     // But you can also run an old version such as the default '3.4.1'.
-    version: '4.4.4',
+    version: "4.4.4",
     oplog: true,
     port: 27017,
     servers: {
@@ -66,25 +66,25 @@ module.exports = {
 
   // Reverse proxy for SSL
   proxy: {
-    domains: 'coauthor.anysphere.co',
+    domains: "coauthor.anysphere.co",
     ssl: {
       // The simple way to enable SSL on your server is Let's Encrypt.
       // Just specify your email address as follows:
-      letsEncryptEmail: 'edemaine@mit.edu',
+      letsEncryptEmail: "sualeh@anysphere.co",
       // Alternatively, specify a certificate manually as follows:
       //crt: '../../coauthor_csail_mit_edu.ssl/coauthor_csail_mit_edu.pem',
       //key: '../../coauthor_csail_mit_edu.ssl/coauthor_csail_mit_edu.key',
       // Redirect all http traffic to the https site:
       forceSSL: true,
     },
-    clientUploadLimit: '0', // disable upload limit
-    nginxServerConfig: '../.proxy.config',
+    clientUploadLimit: "0", // disable upload limit
+    nginxServerConfig: "../.proxy.config",
   },
 
   // Run 'npm install' before deploying, to ensure packages are up-to-date
   hooks: {
-    'pre.deploy': {
-      localCommand: 'npm install'
-    }
+    "pre.deploy": {
+      localCommand: "npm install",
+    },
   },
 };
