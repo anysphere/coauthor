@@ -10,7 +10,7 @@
 MONGO_COLLECTION=coauthor
 
 ## 1 for a separate backup for each day; 0 to overwrite the backup each time
-DATE_IN_DIR=0
+DATE_IN_DIR=1
 if [ "$DATE_IN_DIR" -eq 1 ]
 then
   datedir=/`date +%Y-%m-%d`
