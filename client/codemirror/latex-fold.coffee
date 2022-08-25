@@ -1,6 +1,6 @@
 CodeMirror = require 'codemirror'
 
-## The following code is copyright 2014 by William Stein
+## The following code is originally copyright 2014 by William Stein
 ## [https://github.com/sagemath/cloud/blob/0233cdd61f9f81190fa5673daaac38c7fc37e821/page/misc_page.coffee#L439]
 ## and licensed under the BSD license
 ## [https://groups.google.com/forum/#!topic/codemirror/tTeNuMy58VI]
@@ -22,7 +22,9 @@ startswith = (s, x) ->
                 return true
         return false
 
-CodeMirror.registerHelper "fold", "stex", (cm, start) ->
+CodeMirror.registerGlobalHelper "fold", "tex-fold",
+  ((mode) -> mode.name != 'xml'),
+  (cm, start) ->
     line = cm.getLine(start.line).trimLeft()
     find_close = () ->
         BEGIN = "\\begin"
@@ -33,7 +35,7 @@ CodeMirror.registerHelper "fold", "stex", (cm, start) ->
             # find environment close
             environ = get_latex_environ(line.slice(BEGIN.length))
             if not environ?
-                return
+                return [undefined, undefined]
             # find environment close
             END   = "\\end"
             level = 0
@@ -51,54 +53,63 @@ CodeMirror.registerHelper "fold", "stex", (cm, start) ->
                         return [i, j + END.length - 1]
 
         else if startswith(line, "\\[")
+          if start.line+1 <= cm.lastLine()
             for i in [start.line+1..cm.lastLine()]
                 if startswith(cm.getLine(i).trimLeft(), "\\]")
                     return [i, 0]
 
         else if startswith(line, "\\(")
+          if start.line+1 <= cm.lastLine()
             for i in [start.line+1..cm.lastLine()]
                 if startswith(cm.getLine(i).trimLeft(), "\\)")
                     return [i, 0]
 
         else if startswith(line, "\\documentclass")
+          if start.line+1 <= cm.lastLine()
             # pre-amble
             for i in [start.line+1..cm.lastLine()]
                 if startswith(cm.getLine(i).trimLeft(), "\\begin{document}")
                     return [i - 1, 0]
 
         else if startswith(line, "\\chapter")
+          if start.line+1 <= cm.lastLine()
             # book chapter
             for i in [start.line+1..cm.lastLine()]
                 if startswith(cm.getLine(i).trimLeft(), ["\\chapter", "\\end{document}"])
                     return [i - 1, 0]
-            return [cm.lastLine(), 0]
+          return [cm.lastLine(), 0]
 
         else if startswith(line, "\\section")
+          if start.line+1 <= cm.lastLine()
             # article section
             for i in [start.line+1..cm.lastLine()]
                 if startswith(cm.getLine(i).trimLeft(), ["\\chapter", "\\section", "\\end{document}"])
                     return [i - 1, 0]
-            return [cm.lastLine(), 0]
+          return [cm.lastLine(), 0]
 
         else if startswith(line, "\\subsection")
+          if start.line+1 <= cm.lastLine()
             # article subsection
             for i in [start.line+1..cm.lastLine()]
                 if startswith(cm.getLine(i).trimLeft(), ["\\chapter", "\\section", "\\subsection", "\\end{document}"])
                     return [i - 1, 0]
-            return [cm.lastLine(), 0]
+          return [cm.lastLine(), 0]
         else if startswith(line, "\\subsubsection")
+          if start.line+1 <= cm.lastLine()
             # article subsubsection
             for i in [start.line+1..cm.lastLine()]
                 if startswith(cm.getLine(i).trimLeft(), ["\\chapter", "\\section", "\\subsection", "\\subsubsection", "\\end{document}"])
                     return [i - 1, 0]
-            return [cm.lastLine(), 0]
+          return [cm.lastLine(), 0]
         else if startswith(line, "\\subsubsubsection")
+          if start.line+1 <= cm.lastLine()
             # article subsubsubsection
             for i in [start.line+1..cm.lastLine()]
                 if startswith(cm.getLine(i).trimLeft(), ["\\chapter", "\\section", "\\subsection", "\\subsubsection", "\\subsubsubsection", "\\end{document}"])
                     return [i - 1, 0]
-            return [cm.lastLine(), 0]
+          return [cm.lastLine(), 0]
         else if startswith(line, "%\\begin{}")
+          if start.line+1 <= cm.lastLine()
             # support what texmaker supports for custom folding -- http://tex.stackexchange.com/questions/44022/code-folding-in-latex
             for i in [start.line+1..cm.lastLine()]
                 if startswith(cm.getLine(i).trimLeft(), "%\\end{}")

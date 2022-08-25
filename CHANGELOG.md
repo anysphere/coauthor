@@ -7,6 +7,35 @@ To see every change with descriptions aimed at developers, see
 As a continuously updated web app, Coauthor uses dates
 instead of version numbers.
 
+## 2022-08-20
+
+* Table of contents displays all message coauthors instead of creator.
+  For more than two coauthors, it just shows last names.
+  [[#607](https://github.com/edemaine/coauthor/issues/607)]
+* Support folding of LaTeX `\section`, `\begin{itemize}`, etc.
+  in Markdown format (not just LaTeX), as it supports this syntax too.
+* Bug fixes in LaTeX folding
+* Fix folding when changing between formats in message editor via
+  [CodeMirror 5.65.8](https://codemirror.net/5/doc/releases.html)
+
+## 2022-08-08
+
+* Improve wording in email notifications for thread creation
+  ("created thread" instead of "created root message in thread").
+
+## 2022-07-27
+
+* URLs with "false Markdown" in them fixed thanks to updated markdown-it
+  [[#426](https://github.com/edemaine/coauthor/issues/426)]
+* Small message editor bug fixes via
+  [CodeMirror 5.65.7](https://codemirror.net/5/doc/releases.html)
+
+## 2022-07-04
+
+* Better copy/pasting behavior with messages containing mathematics,
+  thanks to KaTeX 0.16.0.
+* [Link](README.md#user-tips) to better ways to input accented characters
+
 ## 2022-04-30
 
 * Search now supports parentheses for mixing AND and OR queries arbitrarily.
